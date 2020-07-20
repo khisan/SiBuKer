@@ -1,0 +1,7 @@
+CRITICAL - 2020-07-20 04:22:31 --> Cannot call constructor
+#0 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(886): App\Controllers\Home->__construct()
+#1 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(395): CodeIgniter\CodeIgniter->createController()
+#2 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest()
+#3 /srv/http/htdocs/SiBuKer/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#4 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(34): require_once('/srv/http/htdoc...')
+#5 {main}

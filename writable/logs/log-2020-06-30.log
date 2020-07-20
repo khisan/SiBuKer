@@ -1,0 +1,15 @@
+CRITICAL - 2020-06-30 00:22:26 --> Undefined property: App\Controllers\Home::$load
+#0 /srv/http/htdocs/SiBuKer/app/Controllers/Home.php(9): CodeIgniter\Debug\Exceptions->errorHandler()
+#1 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(886): App\Controllers\Home->__construct()
+#2 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(395): CodeIgniter\CodeIgniter->createController()
+#3 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest()
+#4 /srv/http/htdocs/SiBuKer/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#5 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(34): require_once('/srv/http/htdoc...')
+#6 {main}
+CRITICAL - 2020-06-30 00:22:48 --> Cannot call constructor
+#0 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(886): App\Controllers\Home->__construct()
+#1 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(395): CodeIgniter\CodeIgniter->createController()
+#2 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest()
+#3 /srv/http/htdocs/SiBuKer/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#4 /srv/http/htdocs/SiBuKer/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(34): require_once('/srv/http/htdoc...')
+#5 {main}
