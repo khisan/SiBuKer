@@ -1,16 +1,18 @@
 <?php namespace App\Controllers;
 
+use App\Models\LowonganModel;
+
 class Home extends BaseController
 {
 
 	public function __construct()
 	{
-		$this->dataLowongan = new DataLowongan();
+		$this->lowonganModel= new lowonganModel();
 	}
 
 	public function index()
 	{
-		$data['data'] = $this->m_data_lowongan->tampil_lowongan();
+		$data['data'] = $this->lowonganModel->tampil_lowongan()->getResultArray();
 		return view('index.php', $data);
 	}
 
