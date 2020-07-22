@@ -1,9 +1,9 @@
 <?php namespace App\Controllers\Frontend;
 
-use CodeIgniter\Controller;
 use App\Models\LowonganModel;
+use CodeIgniter\Controller;
 
-class Home extends BaseController
+class Home extends Controller
 {
 
 	public function __construct()
