@@ -19,11 +19,11 @@ class Home extends Controller
 
 	public function daftar()
 	{
-		return view('daftar.php');
+		return view('Frontend/daftar.php');
 	}
 
 	public function login()
 	{
-		return view('login.php');
+		return view('Frontend/login.php');
 	}
 }

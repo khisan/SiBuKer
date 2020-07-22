@@ -3,7 +3,7 @@
 use App\Models\LowonganModel;
 use CodeIgniter\Controller;
 
-class Home extends Controller
+class Admin extends Controller
 {
 
 	public function __construct(){
