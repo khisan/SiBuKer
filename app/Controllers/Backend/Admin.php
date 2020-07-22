@@ -1,10 +1,12 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php namespace App\Controllers\Backend;
 
-class C_admin extends CI_Controller {
+use App\Models\LowonganModel;
+use CodeIgniter\Controller;
+
+class Home extends Controller
+{
 
 	public function __construct(){
-		parent::__construct();
 		$this->load->model('m_data_admin');
 		$this->load->model('m_data_alumni');
 		$this->load->model('m_data_lowongan');
