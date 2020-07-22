@@ -1,5 +1,9 @@
-<?php
-class M_data_jurusan extends CI_Model{
+<?php namespace App\Models;
+
+use CodeIgniter\Model;
+
+class jurusanModel extends Model
+{
 
 	public function tampil_jurusan(){
 		return $hsl=$this->db->get("jurusan")->result_array();

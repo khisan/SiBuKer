@@ -1,5 +1,9 @@
-<?php
-class M_data_alumni extends CI_Model{
+<?php namespace App\Models;
+
+use CodeIgniter\Model;
+
+class alumniModel extends Model
+{
 	
   public function tampil_alumni(){
     $this->db->join('jurusan', 'jurusan.id_jurusan = alumni.id_jurusan');

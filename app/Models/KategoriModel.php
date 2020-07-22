@@ -1,6 +1,9 @@
-<?php
-class M_data_kategori extends CI_Model{
+<?php namespace App\Models;
 
+use CodeIgniter\Model;
+
+class kategoriModel extends Model
+{
 	public function tampil_kategori(){
 		return $hsl=$this->db->get("kategori")->result_array();
 	}

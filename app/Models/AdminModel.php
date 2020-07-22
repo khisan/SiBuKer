@@ -1,5 +1,9 @@
-<?php
-class M_data_admin extends CI_Model{
+<?php namespace App\Models;
+
+use CodeIgniter\Model;
+
+class adminModel extends Model
+{
 
 	public function tampil_admin(){
 		return $hsl=$this->db->get("admin")->result_array();

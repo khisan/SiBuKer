@@ -1,5 +1,9 @@
-<?php
-class M_data_perusahaan extends CI_Model{
+<?php namespace App\Models;
+
+use CodeIgniter\Model;
+
+class perusahaanModel extends Model
+{
 
 	public function tampil_perusahaan(){
 		return $hsl=$this->db->get("perusahaan")->result_array();
