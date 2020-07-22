@@ -26,3 +26,4 @@
     <link rel="stylesheet" href="<?php echo base_url('/assets/frontend/css/icomoon.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/frontend/css/style.css') ?>">
   </head>
+  <?php echo $this->renderSection('content'); ?>

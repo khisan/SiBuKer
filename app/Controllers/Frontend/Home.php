@@ -1,5 +1,6 @@
-<?php namespace App\Controllers;
+<?php namespace App\Controllers\Frontend;
 
+use CodeIgniter\Controller;
 use App\Models\LowonganModel;
 
 class Home extends BaseController
@@ -13,7 +14,7 @@ class Home extends BaseController
 	public function index()
 	{
 		$data['data'] = $this->lowonganModel->tampil_lowongan()->getResultArray();
-		return view('index.php', $data);
+		return view('Frontend/index.php', $data);
 	}
 
 	public function daftar()
