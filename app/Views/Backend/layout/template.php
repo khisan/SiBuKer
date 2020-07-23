@@ -60,9 +60,9 @@
         </button>
       </div>
     </nav>
-    
-    <?php echo $this->include('layout/sidebar'); ?>
-    <?php echo $this->renderSection('conten'); ?>
+
+    <?php echo $this->include('Backend/layout/sidebar'); ?>
+    <?php echo $this->renderSection('content'); ?>
 
     <footer class="footer">
       <div class="container-fluid clearfix">

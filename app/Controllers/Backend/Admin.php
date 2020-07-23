@@ -33,7 +33,7 @@ class Admin extends Controller
 	public function data_admin()
 	{
 		$data['data'] = $this->m_data_admin->tampil_admin();
-		$this->load->view('administrator/admin/v_data_admin.php', $data);
+		return view('Backend/v_data_admin.php', $data);
 		
 	}
 
@@ -45,7 +45,7 @@ class Admin extends Controller
     $this->form_validation->set_rules('telepon', 'Telepon', 'required');
     $this->form_validation->set_rules('email', 'E-mail', 'required');
 		if ($this->form_validation->run() == false) {
-			$this->load->view('administrator/admin/v_tambah_admin.php');
+			return view('administrator/admin/v_tambah_admin.php');
 		} else {
 			$nama=$this->input->post('nama');
 			$username=$this->input->post('username');
@@ -69,7 +69,7 @@ class Admin extends Controller
 	  $this->form_validation->set_rules('email', 'E-mail', 'required');
 
 	  if ($this->form_validation->run() == false) {
-	      $this->load->view('administrator/admin/v_edit_admin.php', $data);
+	      return view('administrator/admin/v_edit_admin.php', $data);
 	  } else {
 	  	$nama=$this->input->post('nama');
 			$username=$this->input->post('username');
