@@ -1,28 +1,33 @@
 <?php namespace App\Controllers\Backend;
 
+use App\Models\AdminModel;
+use App\Models\AlumniModel;
 use App\Models\LowonganModel;
+use App\Models\PerusahaanModel;
+use App\Models\KategoriModel;
 use CodeIgniter\Controller;
 
 class Admin extends Controller
 {
-
+	protected $adminModel;
 	public function __construct(){
-		$this->load->model('m_data_admin');
-		$this->load->model('m_data_alumni');
-		$this->load->model('m_data_lowongan');
-		$this->load->model('m_data_perusahaan');
-		$this->load->model('m_data_kategori');
+		$this->adminModel= new adminModel();
+		$this->alumniModel= new alumniModel();
+		$this->lowonganModel= new lowonganModel();
+		$this->perusahaanModel= new perusahaanModel();
+		$this->kategoriModel= new kategoriModel();
 	}
 	
 	public function index()
 	{
+		$db = \Config\Database::connect();
 		$data = array(
-									'data'  => $this->db->from("alumni")->count_all_results(),
-									'data2' => $this->db->from("lowongan")->count_all_results(),
-									'data3' => $this->db->from("perusahaan")->count_all_results(),
-									'data4' => $this->db->from("kategori")->count_all_results()
+									'data'  => $db->table('alumni')->countAllResults(),
+									'data2' => $db->table('lowongan')->countAllResults(),
+									'data3' => $db->table('perusahaan')->countAllResults(),
+									'data4' => $db->table('kategori')->countAllResults()
 								 );
-		$this->load->view('administrator/admin/dashboard.php', $data);
+		return view('Backend/dashboard.php', $data);
 	}
 
 	public function data_admin()
