@@ -1,22 +1,24 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php namespace App\Controllers\Backend;
 
-class C_jurusan extends CI_Controller {
+use App\Models\JurusanModel;
+use CodeIgniter\Controller;
+
+class Jurusan extends Controller
+{
 
 	public function __construct(){
-		parent::__construct();
-		$this->load->model('m_data_jurusan');
+		$this->jurusanModel= new jurusanModel();
 	}
 	
 	public function index()
 	{
-		$this->load->view('administrator/admin/dashboard.php');
+		return view('Backend/dashboard');
 	}
 
 	public function data_jurusan()
 	{
-		$data['data'] = $this->m_data_jurusan->tampil_jurusan();
-		$this->load->view('administrator/admin/v_data_jurusan.php', $data);
+		$data['data'] = $this->jurusanModel->tampil_jurusan();
+		return view('Backend/v_data_jurusan', $data);
 		
 	}
 
@@ -24,10 +26,10 @@ class C_jurusan extends CI_Controller {
 	{
     $this->form_validation->set_rules('nama_jurusan', 'Nama jurusan', 'required');
 		if ($this->form_validation->run() == false) {
-			$this->load->view('administrator/admin/v_tambah_jurusan.php');
+			return view('Backend/v_tambah_jurusan');
 		} else {
 			$nama=$this->input->post('nama_jurusan');
-			$this->m_data_jurusan->simpan_jurusan($nama);
+			$this->jurusanModel->simpan_jurusan($nama);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
 			redirect('admin/c_jurusan/data_jurusan');
 		}
@@ -35,14 +37,14 @@ class C_jurusan extends CI_Controller {
 
 	public function edit_jurusan($id)
   {
-	  $data['jurusan'] = $this->m_data_jurusan->tampil_jurusan_by_id($id);
-	  $data['data_jr'] = $this->m_data_jurusan->tampil_jurusan();
+	  $data['jurusan'] = $this->jurusanModel->tampil_jurusan_by_id($id);
+	  $data['data_jr'] = $this->jurusanModel->tampil_jurusan();
 	  $this->form_validation->set_rules('nama_jurusan', 'Nama jurusan', 'required');
 	  if ($this->form_validation->run() == false) {
-	      $this->load->view('administrator/admin/v_edit_jurusan.php', $data);
+	      return view('Backend/v_edit_jurusan', $data);
 	  } else {
 	  	$nama=$this->input->post('nama_jurusan');
-      $this->m_data_jurusan->update_jurusan();
+      $this->jurusanModel->update_jurusan();
       $this->session->set_flashdata('flash', 'Diubah');
       redirect('admin/c_jurusan/data_jurusan');
 	  }
@@ -50,7 +52,7 @@ class C_jurusan extends CI_Controller {
 
   public function hapus_jurusan($id)
   {
-    $this->m_data_jurusan->hapus_jurusan($id);
+    $this->jurusanModel->hapus_jurusan($id);
     $this->session->set_flashdata('flash', 'Dihapus');
     redirect('admin/c_jurusan/data_jurusan');
   }

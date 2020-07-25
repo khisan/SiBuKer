@@ -1,9 +1,5 @@
-<?php
-  include(APPPATH.'views/administrator/header.php');
-?> 
-<?php
-  include(APPPATH.'views/administrator/sidebar.php');
-?> 
+<?php echo $this->extend('Backend/layout/template'); ?>
+<?php echo $this->section('content'); ?>
 <div class="main-panel">
   <div class="content-wrapper">
   <!-- Page Title Header Starts-->
@@ -21,7 +17,7 @@
         <div class="card">
           <div class="card-body">
             <a href="<?php echo base_url('admin/c_jurusan/tambah_jurusan') ?>" class="btn btn-md btn-primary btn-tambah"><i class="fa fa-plus"></i>Tambah jurusan</a>
-            <?php if ($this->session->flashdata('flash')) { ?>
+            <?php if (session()->getFlashData('flash')) { ?>
               <div class="alert alert-success alert-dismissible fade show float-right" role="alert">
                 Data jurusan <strong>berhasil</strong> <?php echo $this->session->flashdata('flash'); ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -60,6 +56,4 @@
     </div>
   </div>
 </div>
-<?php
-  include(APPPATH.'views/administrator/footer.php')
-?>
+<?php echo $this->endSection(); ?>

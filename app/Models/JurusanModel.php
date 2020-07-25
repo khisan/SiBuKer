@@ -5,8 +5,9 @@ use CodeIgniter\Model;
 class jurusanModel extends Model
 {
 
+	protected $table = 'jurusan';
 	public function tampil_jurusan(){
-		return $hsl=$this->db->get("jurusan")->result_array();
+		return $hsl=$this->findAll();
 	}
 
 	public function tampil_jurusan_by_id($id){

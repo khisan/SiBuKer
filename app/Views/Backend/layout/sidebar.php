@@ -5,13 +5,13 @@
   <ul class="nav">
     <li class="nav-item nav-category"></li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url('admin/c_admin') ?>">
+      <a class="nav-link" href="/backend/admin">
         <i class="menu-icon typcn typcn-document-text"></i>
         <span class="menu-title">Home</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url('admin/c_jurusan/data_jurusan') ?>">
+      <a class="nav-link" href="<?php echo base_url('backend/jurusan/data_jurusan') ?>">
         <i class="menu-icon typcn typcn-th-large-outline"></i>
         <span class="menu-title">Data Jurusan</span>
       </a>

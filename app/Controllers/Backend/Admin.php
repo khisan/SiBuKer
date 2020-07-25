@@ -9,7 +9,6 @@ use CodeIgniter\Controller;
 
 class Admin extends Controller
 {
-	protected $adminModel;
 	public function __construct(){
 		$this->adminModel= new adminModel();
 		$this->alumniModel= new alumniModel();
