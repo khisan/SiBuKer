@@ -33,21 +33,8 @@
                     <th> Aksi </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <?php
-                      $no = 0; 
-                      foreach ($data as $jurusan) :
-                      $no++
-                    ?>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $jurusan['nama_jurusan'] ?></td>
-                    <td>
-                      <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>
-                      <a href="<?php echo base_url('admin/c_jurusan/hapus_jurusan/') ?><?php echo $jurusan['id_jurusan']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-eraser"></i></a>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
+                <tbody id="show_data">
+                  
                 </tbody>
               </table>
             </div>
@@ -89,87 +76,66 @@
     </div>
   </div>
   <!-- Edit Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Form edit jurusan</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal" method="post" action="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label class="control-label col-xs-3">Nama Jurusan</label>
-                <div class="col-xs-12">
-                  <input name="nama_jurusan" class="form-control" type="text" placeholder="Nama Jurusan">
+  <form action="<?php echo site_url('Backend/Jurusan/edit_jurusan');?>" method="post">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Form edit jurusan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" method="post" action="">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label class="control-label col-xs-3">Nama Jurusan</label>
+                  <div class="col-xs-12">
+                    <input name="nama_jurusan_2" class="form-control" type="text" placeholder="Nama Jurusan">
+                  </div>
+                  <?php /*
+                  <p class="text-danger"><?php echo form_error('nama_jurusan'); ?></p>
+                  */ ?>
                 </div>
-                <?php /*
-                <p class="text-danger"><?php echo form_error('nama_jurusan'); ?></p>
-                */ ?>
               </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-success">Simpan</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="id">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
 </div>
-<?php echo $this->endSection(); ?>
 <script>
-  reload_table();
+$(document).ready(function() {
+  tampil_data_jurusan(); // pemanggilan fungsi tampil jurusan
 
-  function reload_table() {
+  // fungsi tampil barang
+  function tampil_data_jurusan(){
     $.ajax({
-      url: "<?php echo site_url('Jurusan/data_jurusan') ?>",
-      beforeSend: function(f) {
-        $('#table_jurusan').html('Load Table ... ... !');
-      },
-      success: function(data) {
-        $('table_jurusan').html(data);
+      method  : 'get',
+      url   : '<?php echo base_url('backend/jurusan/data_jurusan') ?>',
+      async : false,
+      dataType  : 'json',
+      success : function(data){
+        var html = '';
+        var no=1;
+        for(i=0; i<data.length; i++){
+          html += '<tr>'+
+                  '<td>'+ no++ +'</td>'+
+                  '<td>'+data[i].nama_jurusan+'</td>'+
+                  '<td><a href="javascript:void(0);" class="btn btn-xs btn-warning" id="btn-edit" data-id="' + data[i].id_jurusan + '" data-nama_jurusan="' + data[i].nama_jurusan + '"><i class="fa fa-edit"></i></a> <a href="' + <?php echo base_url('admin/c_jurusan/hapus_jurusan/') ?>data[i].id_jurusan + '" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-eraser"></i></a></td>'+
+                  '</tr>';
+        }
+        $('#show_data').html(html);
       }
     });
   }
-  var save_method;
-
-  function tambah() {
-    save_method = 'tambah';
-
-    $.ajax({
-      url: "<?php echo site_url('backend/jurusan/create') ?>",
-      success: function(data) {
-        $('#myModal .modal-dialog .modal-content .modal-body').html(data);
-      }
-
-    });
-    $('#myModal').modal(show);
-    $('#modal-title').text('Form Tambah Jurusan');
-  }
-
-  function simpan() {
-    var url;
-    if (save_method == 'tambah') {
-      url = "<?php echo site_url('backend/jurusan/create') ?>"
-    } else {
-      url = < ? php echo site_url('backend/jurusan/edit') ? >
-    }
-
-    $.ajax({
-      url: "url",
-      type: "POST",
-      //data:$('#form_jurusan').serialize();
-      success: function(data) {
-        $('#myModal').modal('hide');
-        reload_table();
-      }
-
-    });
-  }
+});
 </script>
+<?php echo $this->endSection(); ?>

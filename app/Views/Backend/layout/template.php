@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/css/demo_1/style.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/datatables/DataTables/css/datatables.min.css') ?>">
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/images/favicon.png') ?>" />
+  <script src="<?php echo base_url('assets/admin/vendors/jquery/jquery.min.js') ?>"></script>
   <style>
     .btn-tambah {
       margin-bottom: 20px;
@@ -85,10 +86,6 @@
   <script>
     $(document).ready(function() {
       $('#table1').DataTable({
-        // $('#select_bulan').on('change', function () {
-        //           table.columns(3).search( this.value ).draw();
-        //       } );
-        // var exportTitle =$(".page-title").text();
         dom: 'Bfrtip',
         buttons: [{
             extend: 'copy',

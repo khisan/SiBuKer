@@ -11,7 +11,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url('backend/jurusan/data_jurusan') ?>">
+      <a class="nav-link" href="<?php echo base_url('backend/jurusan') ?>">
         <i class="menu-icon typcn typcn-th-large-outline"></i>
         <span class="menu-title">Data Jurusan</span>
       </a>

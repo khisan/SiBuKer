@@ -7,7 +7,7 @@ class jurusanModel extends Model
 
 	protected $table = 'jurusan';
 	public function tampil_jurusan(){
-		return $hsl=$this->findAll();
+		return $this->findAll();
 	}
 
 	public function tampil_jurusan_by_id($id){

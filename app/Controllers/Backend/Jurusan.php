@@ -12,14 +12,14 @@ class Jurusan extends Controller
 	
 	public function index()
 	{
-		return view('Backend/dashboard');
+		return view('Backend/v_data_jurusan');
 	}
 
 	public function data_jurusan()
 	{
-		$data['data'] = $this->jurusanModel->tampil_jurusan();
-		return view('Backend/v_data_jurusan', $data);
-		
+		$data = $this->jurusanModel->tampil_jurusan();
+		echo json_encode($data);
+		//return view('Backend/v_data_jurusan', $data);
 	}
 
 	public function tambah_jurusan()
