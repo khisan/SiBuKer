@@ -17,14 +17,14 @@
           <div class="card">
             <div class="card-body">
               <button class="btn btn-md btn-primary btn-tambah" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>Tambah jurusan</button>
-              <?php if (session()->getFlashData('flash')) { ?>
+              <?php if (session()->getFlashData('flash')) {?>
               <div class="alert alert-success alert-dismissible fade show float-right" role="alert">
                 Data jurusan <strong>berhasil</strong> <?php echo $this->session->flashdata('flash'); ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <?php } ?>
+              <?php }?>
               <table class="table table-bordered table-striped" id="table1" style="margin-top: 20px;text-align: center;">
                 <thead>
                   <tr>
@@ -60,9 +60,6 @@
                 <div class="col-xs-12">
                   <input name="nama_jurusan" class="form-control" type="text" placeholder="Nama Jurusan">
                 </div>
-                <?php /*
-                <p class="text-danger"><?php echo form_error('nama_jurusan'); ?></p>
-                */ ?>
               </div>
             </div>
           </form>
@@ -75,7 +72,7 @@
     </div>
   </div>
   <!-- Edit Modal -->
-  <form action="<?php echo site_url('Backend/Jurusan/edit_jurusan');?>" method="post">
+  <form action="<?php echo site_url('Backend/Jurusan/edit_jurusan'); ?>" method="post">
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -93,9 +90,6 @@
                   <div class="col-xs-12">
                     <input name="nama_jurusan_2" class="form-control" type="text" placeholder="Nama Jurusan">
                   </div>
-                  <?php /*
-                  <p class="text-danger"><?php echo form_error('nama_jurusan'); ?></p>
-                  */ ?>
                 </div>
               </div>
             </form>
@@ -108,6 +102,35 @@
         </div>
       </div>
     </div>
+  </form>
+  <!--DELETE RECORD MODAL-->
+  <form action="<?php echo site_url('Backend/Jurusan/hapus_jurusan');?>" method="post">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header no-bd">
+            <h5 class="modal-title">
+              <span class="fw-mediumbold">
+                Hapus Jadwal</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info">
+              Anda yakin ingin menghapus data ini?
+            </div>
+          </div>
+          <div class="modal-footer no-bd">
+            <input type="hidden" name="id">
+            <button type="submit" class="btn btn-primary">Hapus</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 </div>
 <script>
@@ -128,7 +151,7 @@ $(document).ready(function() {
           html += '<tr>'+
                   '<td>'+ no++ +'</td>'+
                   '<td>'+data[i].nama_jurusan+'</td>'+
-                  '<td><a href="javascript:void(0);" class="btn btn-xs btn-warning btn-edit" data-id="' + data[i].id_jurusan + '" data-nama_jurusan="' + data[i].nama_jurusan + '"><i class="fa fa-edit"></i></a> <a href="javascript:void(0);" class="btn btn-xs btn-danger"><i class="fa fa-eraser"></i></a></td>'+
+                  '<td><a href="javascript:void(0);" class="btn btn-xs btn-warning btn-edit" data-id="' + data[i].id_jurusan + '" data-nama_jurusan="' + data[i].nama_jurusan + '"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" class="btn btn-xs btn-danger btn-delete" data-id="' + data[i].id_jurusan + '"><i class="fa fa-eraser"></i></a></td>'+
                   '</tr>';
         }
         $('#show_data').html(html);
@@ -144,6 +167,13 @@ $(document).ready(function() {
     $('[name="nama_jurusan_2"]').val(nama_jurusan);
     $('#editModal').modal('show');
   });
+
+  //Delete Record
+    $('.btn-delete').on('click', function() {
+      var id = $(this).data('id');
+      $('[name="id"]').val(id);
+      $('#deleteModal').modal('show');
+    });
 
 });
 </script>
