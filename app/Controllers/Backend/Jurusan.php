@@ -12,7 +12,8 @@ class Jurusan extends Controller
 	
 	public function index()
 	{
-		return view('Backend/v_data_jurusan');
+		$data['data'] = $this->jurusanModel->tampil_jurusan();
+		return view('Backend/v_data_jurusan', $data);
 	}
 
 	public function data_jurusan()

@@ -34,7 +34,6 @@
                   </tr>
                 </thead>
                 <tbody id="show_data">
-                  
                 </tbody>
               </table>
             </div>
@@ -129,13 +128,23 @@ $(document).ready(function() {
           html += '<tr>'+
                   '<td>'+ no++ +'</td>'+
                   '<td>'+data[i].nama_jurusan+'</td>'+
-                  '<td><a href="javascript:void(0);" class="btn btn-xs btn-warning" id="btn-edit" data-id="' + data[i].id_jurusan + '" data-nama_jurusan="' + data[i].nama_jurusan + '"><i class="fa fa-edit"></i></a> <a href="' + <?php echo base_url('admin/c_jurusan/hapus_jurusan/') ?>data[i].id_jurusan + '" class="btn btn-xs btn-danger" onclick="return confirm('Yakin ingin menghapus data?')"><i class="fa fa-eraser"></i></a></td>'+
+                  '<td><a href="javascript:void(0);" class="btn btn-xs btn-warning btn-edit" data-id="' + data[i].id_jurusan + '" data-nama_jurusan="' + data[i].nama_jurusan + '"><i class="fa fa-edit"></i></a> <a href="javascript:void(0);" class="btn btn-xs btn-danger"><i class="fa fa-eraser"></i></a></td>'+
                   '</tr>';
         }
         $('#show_data').html(html);
       }
     });
   }
+
+  //Edit Record
+  $('.btn-edit').on('click', function() {
+    var id = $(this).data('id');
+    var nama_jurusan = $(this).data('nama_jurusan');
+    $('[name="id"]').val(id);
+    $('[name="nama_jurusan_2"]').val(nama_jurusan);
+    $('#editModal').modal('show');
+  });
+
 });
 </script>
 <?php echo $this->endSection(); ?>
