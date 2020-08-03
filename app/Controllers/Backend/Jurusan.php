@@ -6,8 +6,9 @@ use CodeIgniter\Controller;
 class Jurusan extends Controller
 {
 
+	protected $jurusanModel;
 	public function __construct(){
-		$this->jurusanModel= new jurusanModel();
+		$this->jurusanModel= new JurusanModel();
 	}
 	
 	public function index()
@@ -23,17 +24,12 @@ class Jurusan extends Controller
 		//return view('Backend/v_data_jurusan', $data);
 	}
 
-	public function tambah_jurusan()
+	public function simpan_jurusan()
 	{
-    $this->form_validation->set_rules('nama_jurusan', 'Nama jurusan', 'required');
-		if ($this->form_validation->run() == false) {
-			return view('Backend/v_tambah_jurusan');
-		} else {
-			$nama=$this->input->post('nama_jurusan');
-			$this->jurusanModel->simpan_jurusan($nama);
-			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('admin/c_jurusan/data_jurusan');
-		}
+			$data = $this->jurusanModel->save([
+				'nama_jurusan' => $this->request->getVar('nama_jurusan')
+			]);
+			echo json_encode($data);
 	}
 
 	public function edit_jurusan($id)

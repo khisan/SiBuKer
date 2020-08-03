@@ -58,7 +58,7 @@
               <div class="form-group">
                 <label class="control-label col-xs-3">Nama Jurusan</label>
                 <div class="col-xs-12">
-                  <input name="nama_jurusan" class="form-control" type="text" placeholder="Nama Jurusan">
+                  <input name="nama_jurusan" id="nama_jurusan" class="form-control" type="text" placeholder="Nama Jurusan">
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-success">Simpan</button>
+          <button class="btn btn-success" id="btn_simpan">Simpan</button>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@ $(document).ready(function() {
   function tampil_data_jurusan(){
     $.ajax({
       method  : 'get',
-      url   : '<?php echo base_url('backend/jurusan/data_jurusan') ?>',
+      url   : '<?php echo base_url('/backend/jurusan/data_jurusan') ?>',
       async : false,
       dataType  : 'json',
       success : function(data){
@@ -174,6 +174,23 @@ $(document).ready(function() {
       $('[name="id"]').val(id);
       $('#deleteModal').modal('show');
     });
+
+  //Btn Simpan
+  $('#btn_simpan').on('click',function(){
+      var nama_jurusan=$('#nama_jurusan').val();
+      $.ajax({
+          type : "POST",
+          url  : '<?php echo base_url('/backend/jurusan/simpan_jurusan') ?>',
+          dataType : "JSON",
+          data : {nama_jurusan:nama_jurusan},
+          success: function(data){
+              $('[name="nama_jurusan"]').val("");
+              $('#addModal').modal('hide');
+              tampil_data_jurusan();
+          }
+      });
+      return false;
+  });
 
 });
 </script>

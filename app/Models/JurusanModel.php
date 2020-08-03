@@ -2,10 +2,11 @@
 
 use CodeIgniter\Model;
 
-class jurusanModel extends Model
+class JurusanModel extends Model
 {
 
 	protected $table = 'jurusan';
+	protected $allowedFields = ['nama_jurusan'];
 	public function tampil_jurusan(){
 		return $hsl=$this->findAll();
 	}
@@ -25,13 +26,6 @@ class jurusanModel extends Model
     ];
     $this->db->where('id_jurusan', $this->input->post('id'));
     $this->db->update('jurusan', $data);
-	}
-
-	public function simpan_jurusan(){
-		$data = [
-	    "nama_jurusan" => $this->input->post('nama_jurusan', true)
-    ];
-		$this->db->insert('jurusan', $data);
 	}
 
 }
